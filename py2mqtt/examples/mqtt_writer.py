@@ -30,6 +30,14 @@ class MQTTTopicWriter():
             buffer_reader = iter(buffer_reader)
         self._buffer_reader = buffer_reader
 
+    def push(self, raw_payload):
+        if self._client:
+            timestamp = int.to_bytes(int(time.time() * 1e6), 8, 'big', signed=False)
+            print(f'chunk timestamp: {int.from_bytes(timestamp, "big")}')
+            payload = timestamp + raw_payload
+            self._client.publish(self._topic, payload)
+            return payload
+
     def next(self):
         """Reads the next item from the buffer_reader and publishes it to the given topic."""
         if self._buffer_reader and self._client:
@@ -38,6 +46,7 @@ class MQTTTopicWriter():
             if raw_payload:
                 # get timestamp as unsigned 64-bit integer
                 timestamp = int(time.time() * 1000).to_bytes(8, 'big', signed=False)
+                print(f'chunk timestamp: {int.from_bytes(timestamp, "big")}')
                 payload = timestamp + raw_payload
                 self._client.publish(self._topic, payload)
                 return payload
@@ -48,5 +57,5 @@ if __name__ == '__main__':
     topic = 'test_topic'
     buffer = iter(range(1e3))
     writer = MQTTTopicWriter(topic, buffer)
-    while True:
+    for i in range(10000):
         writer.next()

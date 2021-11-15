@@ -10,10 +10,12 @@ class MQTTTopicReader(SourceReader):
     _mqtt_config = {}
     _keepalive = False
     _get_key = None
-    def __init__(self, topic, mqtt_config=None, keepalive=False):
+    _max_buffer_len = None
+    def __init__(self, topic, mqtt_config=None, keepalive=False, max_buffer_len=None):
         if mqtt_config:
             self._mqtt_config = mqtt_config
         self._keepalive = keepalive
+        self._max_buffer_len = max_buffer_len
         add_subscription(topic, self.receive)
 
     def info(self):
@@ -21,17 +23,23 @@ class MQTTTopicReader(SourceReader):
 
     def key(self, data):
         """Base sorted case: assume first 64 bits of payload are a timestamp."""
-        return int.from_bytes(data[:8])
+        print(f'checking key from data {data[:8]} of type {type(data)}')
+        return int.from_bytes(data[:8], 'big', signed=False)
 
     def receive(self, payload):
+        """Appends an incoming message payload to the read buffer.
+
+        If max_buffer_len is set and the read buffer is full, shifts the first value off the buffer.
+        """
+        if self._max_buffer_len and len(self._read_buffer) >= self._max_buffer_len:
+            self._read_buffer = self._read_buffer[1:]
         self._read_buffer.append(payload)
 
-    def read(self, n=None):
-        data = self._read_buffer[:n]
-        if n is not None:
-            self._read_buffer = self._read_buffer[n:]
-        else:
-            self._read_buffer = []
+    def read(self):
+        if not self._read_buffer:
+            return None
+        data = self._read_buffer[0]
+        self._read_buffer = self._read_buffer[1:]
         if not data:
             return None
         return data
