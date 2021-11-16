@@ -1,9 +1,7 @@
-"""Defines the MQTTPCMBufferReader class"""
+"""Defines the MQTTPCMBufferReader class. Not sure if this class is even necessary."""
 
 import pyaudio
 
-from py2mqtt.client import add_subscription, init_client, get_client, mqtt_listen, mqtt_stop_listening, mqtt_listening
-from py2mqtt.examples.mqtt_reader import MQTTTopicReader
 from stream2py.stream_buffer import BufferReader
 
 DFLT_SR = 44100

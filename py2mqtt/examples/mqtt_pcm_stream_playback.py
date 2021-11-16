@@ -6,7 +6,7 @@ from stream2py.stream_buffer import StreamBuffer
 
 TOPIC = 'test_topic'
 
-def mqtt_stream_playback_demo(width=2, channels=1, sr=44100):
+def mqtt_stream_playback_demo(width=2, channels=2, sr=44100):
     audio = pyaudio.PyAudio()
     play_stream = audio.open(
         format=audio.get_format_from_width(width),
@@ -17,9 +17,13 @@ def mqtt_stream_playback_demo(width=2, channels=1, sr=44100):
     stream_reader = MQTTTopicReader(TOPIC)
     with StreamBuffer(stream_reader, maxlen=1000) as buffer:
         playback_reader = buffer.mk_reader()
+        storage_reader = buffer.mk_reader()
         for message_payload in playback_reader:
             pcm_bytes = message_payload[8:]
             play_stream.write(pcm_bytes)
             timestamp_bytes = message_payload[:8]
-            print(f'received timestamp_bytes: {message_payload[:8]}, {type(message_payload)}')
             print(f'received chunk with timestamp {int.from_bytes(timestamp_bytes, "big")}')
+
+
+if __name__ == '__main__':
+    mqtt_stream_playback_demo()

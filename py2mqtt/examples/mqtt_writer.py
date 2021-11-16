@@ -7,28 +7,26 @@ from typing import Iterable
 from py2mqtt.client import init_client
 
 class MQTTTopicWriter():
-    """Publishes items from a buffer reader to an MQTT topic. Meant to simulate a smart sensor
+    """Publishes items from an iterable to an MQTT topic. Meant to simulate a smart sensor
     or IoT edge device.
-
-    Does not handle any MQTT connectivity details, must be passed an MQTT client instance.
     """
     _topic = ''
     _client = None
-    _buffer_reader = iter([])
-    def __init__(self, topic: str, buffer_reader: Iterable, client=None):
+    _data = iter([])
+    def __init__(self, topic: str, data: Iterable, client=None):
         """Instantiate an MQTT writer
 
         :param topic: str - The topic to publish to
-        :param buffer_reader: Any iterable (will be wrap
-        :param client: An MQTT client instance or any object with a publish(topic, payload) method
+        :param data: Any iterable
+        :param client: Optional - An MQTT client instance or any object with a publish(topic, payload) method
         """
         self._topic = topic
         if not client:
             client = init_client(listen=True)
         self._client = client
-        if not isinstance(buffer_reader, Iterator):
-            buffer_reader = iter(buffer_reader)
-        self._buffer_reader = buffer_reader
+        if not isinstance(data, Iterator):
+            data = iter(data)
+        self._data = data
 
     def push(self, raw_payload):
         if self._client:
@@ -54,8 +52,11 @@ class MQTTTopicWriter():
 
 
 if __name__ == '__main__':
+    filename = '~/audio/yourfile.wav'
     topic = 'test_topic'
-    buffer = iter(range(1e3))
-    writer = MQTTTopicWriter(topic, buffer)
-    for i in range(10000):
-        writer.next()
+    chk_size = 2048
+    n_chunks = 1000
+    with open(filename, 'rb') as fp:
+        writer = MQTTTopicWriter(topic, fp)
+        for i in range(n_chunks):
+            writer.push(fp.read(chk_size))
