@@ -24,11 +24,12 @@ $ brew services start mosquitto
 
 ```python
 from py2mqtt.examples.mqtt_writer import MQTTTopicWriter
+from py2mqtt import sample_data_dir_path
+import os
 
 # Enter a filename with PCM data (or use this default one)
 # For this demo, should be 16-bit, 1 channel, 44100 Hz
-import importlib_resources, py2mqtt
-src_wav_filepath = str(importlib_resources.files(py2mqtt) / 'sample_data' / 'drumloop.wav')
+src_wav_filepath = os.path.join(sample_data_dir_path, 'drumloop.wav')
 
 topic = 'test_topic'
 chk_size = 2048  # you may modify these values
