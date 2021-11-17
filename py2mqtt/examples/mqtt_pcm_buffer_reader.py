@@ -6,19 +6,19 @@ from stream2py.stream_buffer import BufferReader
 
 DFLT_SR = 44100
 
+
 class MQTTPCMBufferReader(BufferReader):
     """Reads data from a buffer of PCM chunks and plays back.
     """
+
     _sr: int
     _width: int
     _channels: int
     _audio: pyaudio.PyAudio
     _play_stream = None
-    def __init__(self,
-        sr=DFLT_SR,
-        width=2,
-        channels=1,
-        **kwargs,
+
+    def __init__(
+        self, sr=DFLT_SR, width=2, channels=1, **kwargs,
     ):
         self._sr = sr
         self._width = width
@@ -32,8 +32,8 @@ class MQTTPCMBufferReader(BufferReader):
         )
         BufferReader.__init__(self, **kwargs)
 
-    def next(self, *args, **kwargs) -> BufferReader:
-        payload = BufferReader.next(self, *args, **kwargs)
+    def read(self, *args, **kwargs) -> BufferReader:
+        payload = BufferReader.read(self, *args, **kwargs)
         pcm_bytes = payload[8:]
         self._play_stream.write(pcm_bytes)
         return payload
