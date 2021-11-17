@@ -20,7 +20,6 @@ $ brew services start mosquitto
 
 1. Ensure you have `pyaudio` installed. If not: `pip install pyaudio` + some system installs (http://people.csail.mit.edu/hubert/pyaudio/). 
 2. Run the file `py2mqtt/examples/mqtt_pcm_stream_playback.py`.
-3. Run the data producer code in a separate process:
 
 ```python
 from py2mqtt.examples.mqtt_writer import MQTTTopicWriter
@@ -28,7 +27,7 @@ from py2mqtt import sample_data_dir_path
 import os
 
 # Enter a filename with PCM data (or use this default one)
-# For this demo, should be 16-bit, 1 channel, 44100 Hz
+# For this demo, should be 16-bit, 2 channels, 44100 Hz
 src_wav_filepath = os.path.join(sample_data_dir_path, 'drumloop.wav')
 
 topic = 'test_topic'
