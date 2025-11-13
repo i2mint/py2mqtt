@@ -1,6 +1,6 @@
 """Defines functions to instantiate and access an MQTT client."""
 
-from typing import Callable
+from collections.abc import Callable
 
 import paho.mqtt.client as mqtt
 

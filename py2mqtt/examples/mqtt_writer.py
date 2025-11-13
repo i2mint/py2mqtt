@@ -2,7 +2,7 @@
 
 from collections.abc import Iterator
 import time
-from typing import Iterable
+from collections.abc import Iterable
 
 from py2mqtt.client import init_client
 
