@@ -22,8 +22,10 @@ dependencies = [
 Homepage = "https://github.com/i2mint/py2mqtt"
 
 [project.optional-dependencies]
+audio-examples = [
+    "pyaudio",  # needs the system portaudio library
+]
 dev = [
-    "pyaudio",
     "importlib_resources",
     "strand",
 ]
