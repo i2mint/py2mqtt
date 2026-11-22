@@ -1,0 +1,12 @@
+# py2mqtt
+
+> There is a bit of an air of mystery around this project...
+
+
+## Pages in this subsection
+
+- [py2mqtt.mqtt_reader](index.html.md): Defines the MQTTTopicReader class
+
+## Optional
+
+- [Top-level llms.txt](../../../llms.txt): Complete documentation index.

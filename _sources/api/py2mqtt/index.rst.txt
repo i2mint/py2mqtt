@@ -1,0 +1,23 @@
+py2mqtt
+=======
+
+.. py:module:: py2mqtt
+
+.. autoapi-nested-parse::
+
+   Interfaces for Python to transmit, receive, and act on data over an MQTT connection.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /api/py2mqtt/client/index
+   /api/py2mqtt/mqtt_function_caller/index
+   /api/py2mqtt/mqtt_reader/index
+   /api/py2mqtt/util/index
+
+

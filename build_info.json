@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-11-22T20:22:40Z",
+  "package": {
+    "name": "py2mqtt",
+    "version": "0.0.1",
+    "display_name": "py2mqtt",
+    "source": "pyproject.toml"
+  },
+  "git": {
+    "available": true,
+    "commit": "dcd67ae61ef9dba25e75da76c722f3bf3637d012",
+    "short_commit": "dcd67ae",
+    "branch": "main",
+    "tags": [],
+    "dirty": false,
+    "remote_url": "https://github.com/i2mint/py2mqtt",
+    "commit_url": "https://github.com/i2mint/py2mqtt/commit/dcd67ae61ef9dba25e75da76c722f3bf3637d012",
+    "error": null
+  },
+  "ci": {
+    "provider": "github",
+    "repository": "i2mint/py2mqtt",
+    "sha": "dcd67ae61ef9dba25e75da76c722f3bf3637d012",
+    "sha_in_history": true,
+    "ref": "refs/heads/main",
+    "ref_name": "main",
+    "run_id": "45065960688",
+    "run_url": "https://github.com/i2mint/py2mqtt/actions/runs/45065960688",
+    "server_url": "https://github.com"
+  },
+  "tools": {
+    "epythet": "0.2.23",
+    "sphinx": "9.1.1",
+    "docutils": "0.22.4",
+    "python": "3.12.16"
+  },
+  "config": {
+    "theme": "auto",
+    "html_theme": "pydata_sphinx_theme",
+    "accent": "#894200",
+    "mode": "auto",
+    "api_generator": "autoapi",
+    "ignore": [
+      "tests/",
+      "scrap/",
+      "examples/"
+    ],
+    "agent_outputs": true,
+    "aggregates": [
+      "md"
+    ],
+    "ai_artifacts": true,
+    "provenance": true,
+    "docs_dir": "docsrc"
+  },
+  "site": {
+    "modules_documented": 5,
+    "objects_documented": 7
+  },
+  "pypi": {
+    "checked": true,
+    "latest": "0.0.2",
+    "relation": "behind",
+    "error": null
+  },
+  "reproduce": "git clone https://github.com/i2mint/py2mqtt && cd py2mqtt\ngit checkout dcd67ae61ef9dba25e75da76c722f3bf3637d012\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "warnings": [],
+  "alignment": {
+    "aligned": false,
+    "notes": [
+      "The documented version (0.0.1) is behind the latest release on PyPI (0.0.2): `pip install py2mqtt` gives newer code than these docs describe."
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+py2mqtt.client
+==============
+
+.. py:module:: py2mqtt.client
+
+.. autoapi-nested-parse::
+
+   Defines functions to instantiate and access an MQTT client.
+
+
+

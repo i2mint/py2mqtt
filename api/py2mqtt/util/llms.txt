@@ -1,0 +1,12 @@
+# py2mqtt
+
+> There is a bit of an air of mystery around this project...
+
+
+## Pages in this subsection
+
+- [py2mqtt.util](index.html.md): Main documentation page
+
+## Optional
+
+- [Top-level llms.txt](../../../llms.txt): Complete documentation index.

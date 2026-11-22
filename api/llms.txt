@@ -1,0 +1,17 @@
+# py2mqtt
+
+> There is a bit of an air of mystery around this project...
+
+
+## Pages in this subsection
+
+- [API Reference](index.html.md): This page contains auto-generated API reference documentation &lt;sup&gt;1&lt;/sup&gt;.
+- [py2mqtt](py2mqtt/index.html.md): Interfaces for Python to transmit, receive, and act on data over an MQTT connection.
+- [py2mqtt.client](py2mqtt/client/index.html.md): Defines functions to instantiate and access an MQTT client.
+- [py2mqtt.mqtt_function_caller](py2mqtt/mqtt_function_caller/index.html.md): Placeholder for calling functions over MQTT (not yet implemented).
+- [py2mqtt.mqtt_reader](py2mqtt/mqtt_reader/index.html.md): Defines the MQTTTopicReader class
+- [py2mqtt.util](py2mqtt/util/index.html.md): Main documentation page
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.
