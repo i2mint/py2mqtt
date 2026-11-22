@@ -1,6 +1,5 @@
 """Utils"""
 
-
 try:
     import importlib.resources
 
@@ -10,6 +9,6 @@ except AttributeError:
 
     _files = importlib_resources.files
 
-files = _files('py2mqtt')
-sample_data_dir = files / 'sample_data'
+files = _files("py2mqtt")
+sample_data_dir = files / "sample_data"
 sample_data_dir_path = str(sample_data_dir)
